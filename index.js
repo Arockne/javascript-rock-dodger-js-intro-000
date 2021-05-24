@@ -48,6 +48,10 @@ function checkCollision(rock) {
     }
     return false;
   }
+  /*
+  
+  */
+  
 }
     /*******************
     if (false /**
