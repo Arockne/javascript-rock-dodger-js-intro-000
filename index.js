@@ -96,17 +96,6 @@ function createRock(x) {
    * seems like a good pace.)
    */
   function moveRock() {
-    top = parseInt(rock.style.top.split('px')[0]);
-    //if rock collides with dodger
-    if (checkCollision(rock)) {
-      endGame();
-    } else if (top + 20 === GAME_HEIGHT) {
-      rock.remove();
-    } else {
-      rock.style.top = `${top + 5}px`;
-      window.requestAnimationFrame(moveRock);
-    }
-    
     rock.style.top = `${top += 2}px`;
     
     if (checkCollision(rock)) {
@@ -157,8 +146,12 @@ function endGame() {
   for (let rock of ROCKS) {
     rock.remove();
   }
-  window.removeEventListener('keydown', moveDodger);
-  DODGER.removeEventListener('keydown', moveDodger);
+  document.removeEventListener('keydown', moveDodger);
+  
+  START.innerHTML = 'Play again?';
+  START.style.display = 'inline';
+  
+  return alert('YOU LOSE!');
 }
 
 function moveDodger(e) {
@@ -190,6 +183,13 @@ function moveDodgerLeft() {
    * This function should move DODGER to the left
    * (mabye 4 pixels?). Use window.requestAnimationFrame()!
    */
+  window.requestAnimationFram(function() {
+    const left = positionToIntegar(DODGER.style.left);
+    if (left > 0) {
+      DODGER.style.left = `${left - 4}px`;
+    }
+  })
+  /*
   let left = parseInt(DODGER.style.left.split('px')[0]);
   if (left > 0) {
     DODGER.style.left = `${left - 4}px`;
@@ -197,6 +197,7 @@ function moveDodgerLeft() {
   } else {
     DODGER.style.left = `0px`;
   }
+  */
 }
 
 function moveDodgerRight() {
@@ -205,6 +206,13 @@ function moveDodgerRight() {
    * This function should move DODGER to the right
    * (mabye 4 pixels?). Use window.requestAnimationFrame()!
    */
+  window.requestAnimationFrame(function() {
+    let right = positionToInteger(DODGER.style.left);
+    if (right < (GAME_WIDTH - 40)) {
+      DODGER.style.left = `${right + 4}px`;
+    }
+  })
+  /*
   let right = parseInt(DODGER.style.left.split('px')[0]);
   if (right < (GAME_WIDTH - 40)) {
     DODGER.style.left = `${right + 4}px`;
@@ -212,6 +220,7 @@ function moveDodgerRight() {
   } else {
     DODGER.style.left = `${GAME_WIDTH - 40}px`;
   }
+  */
 }
 
 /**
