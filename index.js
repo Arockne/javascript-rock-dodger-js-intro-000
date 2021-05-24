@@ -178,7 +178,6 @@ function moveDodger(e) {
 }
 
 
-//FIND A WAY TO USE window.requestAnimationFrame()*************
 function moveDodgerLeft() {
   // implement me!
   /**
