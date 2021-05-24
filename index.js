@@ -107,6 +107,16 @@ function createRock(x) {
       window.requestAnimationFrame(moveRock);
     }
     
+    rock.style.typ = `${top += 2}px`;
+    
+    if (checkCollision(rock)) {
+      return endGame();
+    }
+    
+    if (top < GAME_HEIGHT) {
+      window.requestAnimationFrame(moveRock);
+    }
+    
     // implement me!
     // (use the comments below to guide you!)
     /**
